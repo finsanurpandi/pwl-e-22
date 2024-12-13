@@ -22,11 +22,25 @@ class StudentSeeder extends Seeder
 
             $year = rand(2018, 2024);
             $reg = rand(1, 150);
+            $group = '';
+
+            if($reg <= 40 ) {
+                $group = 'A';
+            } elseif ($reg > 40 && $reg <= 80) {
+                $group = 'B';
+            } elseif ($reg > 80 && $reg <= 120) {
+                $group = 'C';
+            } elseif ($reg > 120 && $reg <= 150) {
+                $group = 'D';
+            } elseif ($reg > 150 && $reg <= 180) {
+                $group = 'NR';
+            }
 
             DB::table('students')->insert([
                 'npm' => $department->code.''.substr($year, -2).''.sprintf('%03d', $reg),
-                'name' => $faker->name,
+                'fullname' => $faker->name,
                 'year_entry' => $year,
+                'group' => $group,
                 'nidn' => $lecturer->nidn,
                 'department_id' => $department->id
             ]);
