@@ -1,0 +1,1 @@
+{{ $lecturer->nidn }} - {{ $lecturer->fullname }}

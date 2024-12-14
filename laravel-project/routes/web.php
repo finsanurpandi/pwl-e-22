@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
 Route::name('lecturer.')
         ->prefix('lecturer')
-        ->middleware(['auth'])
+        ->middleware(['auth', 'role:admin'])
         ->group(function() {
             Route::get('/', [LecturerController::class, 'index'])->name('index');
             Route::get('/', [LecturerController::class, 'index'])->name('index');
@@ -35,6 +35,7 @@ Route::name('lecturer.')
             Route::patch('/{id}/update', [LecturerController::class, 'update'])->name('update');
             Route::delete('/{id}/destroy', [LecturerController::class, 'destroy'])->name('destroy');
             Route::get('/{id}/students', [LecturerController::class, 'students'])->name('students');
+            Route::get('/{id}/sendmail', [LecturerController::class, 'sendmail'])->name('sendmail');
         });
 
 Route::name('relation.')
